@@ -1,0 +1,123 @@
+{
+  "Statement": [
+    {
+      "Action": [
+        "ecs:*",
+        "ec2:CreateTags",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeSecurityGroups",
+        "ecr:GetAuthorizationToken",
+        "ecs:CreateCluster",
+        "ecs:DeregisterTaskDefinition",
+        "ecs:DescribeTaskDefinition",
+        "ecs:RegisterTaskDefinition",
+        "elasticloadbalancing:*",
+        "elasticloadbalancing:CreateLoadBalancer",
+        "elasticloadbalancing:DescribeListeners",
+        "elasticloadbalancing:DescribeLoadBalancerAttributes",
+        "elasticloadbalancing:DescribeLoadBalancers",
+        "elasticloadbalancing:DescribeTags",
+        "elasticloadbalancing:DescribeTargetGroupAttributes",
+        "elasticloadbalancing:DescribeTargetGroups",
+        "elasticloadbalancing:SetSecurityGroups",
+        "elasticloadbalancing:SetSubnets",
+        "rds:DescribeDBEngineVersions",
+        "ssm:DescribeParameters",
+        "ssm:ListTagsForResource",
+        "sts:GetCallerIdentity",
+        "ecs:TagResource",
+        "elasticloadbalancing:AddTags"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": ["cloudwatch:DescribeAlarms", "cloudwatch:PutMetricAlarm"],
+      "Effect": "Allow",
+      "Resource": "arn:aws:cloudwatch:us-east-1:094877685232:alarm:*"
+    },
+    {
+      "Action": "ec2:DetachNetworkInterface",
+      "Effect": "Allow",
+      "Resource": "arn:aws:ec2:us-east-1:094877685232:instance/*"
+    },
+    {
+      "Action": "ec2:DetachNetworkInterface",
+      "Effect": "Allow",
+      "Resource": "arn:aws:ec2:us-east-1:094877685232:network-interface/*"
+    },
+    {
+      "Action": [
+        "ec2:AuthorizeSecurityGroupEgress",
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:CreateSecurityGroup",
+        "ec2:DeleteSecurityGroup",
+        "ec2:RevokeSecurityGroupEgress"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ec2:us-east-1:094877685232:security-group/*"
+    },
+    {
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:CompleteLayerUpload",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage",
+        "ecr:UploadLayerPart"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ecr:us-east-1:094877685232:repository/*"
+    },
+    {
+      "Action": ["ecs:DeleteCluster", "ecs:DescribeClusters"],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ecs:us-east-1:094877685232:cluster/*"
+    },
+    {
+      "Action": [
+        "ecs:CreateService",
+        "ecs:DeleteService",
+        "ecs:DescribeServices",
+        "ecs:UpdateService"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ecs:us-east-1:094877685232:service/*"
+    },
+    {
+      "Action": "elasticloadbalancing:*",
+      "Effect": "Allow",
+      "Resource": "arn:aws:elasticloadbalancing:us-east-1:094877685232:listener/*"
+    },
+    {
+      "Action": [
+        "elasticloadbalancing:AddTags",
+        "elasticloadbalancing:DeleteLoadBalancer",
+        "elasticloadbalancing:ModifyLoadBalancerAttributes"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:elasticloadbalancing:us-east-1:094877685232:loadbalancer/*"
+    },
+    {
+      "Action": [
+        "elasticloadbalancing:CreateTargetGroup",
+        "elasticloadbalancing:DeleteTargetGroup",
+        "elasticloadbalancing:ModifyTargetGroup",
+        "elasticloadbalancing:ModifyTargetGroupAttributes"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:elasticloadbalancing:us-east-1:094877685232:targetgroup/*"
+    },
+    {
+      "Action": ["logs:*"],
+      "Effect": "Allow",
+      "Resource": "arn:aws:logs:us-east-1:094877685232:log-group:*"
+    },
+    {
+      "Action": ["ssm:DeleteParameter", "ssm:GetParameter", "ssm:PutParameter"],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ssm:us-east-1:094877685232:parameter/*"
+    }
+  ],
+  "Version": "2012-10-17"
+}
+

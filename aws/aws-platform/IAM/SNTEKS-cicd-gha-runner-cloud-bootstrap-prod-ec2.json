@@ -1,0 +1,275 @@
+{
+  "Statement": [
+    {
+      "Action": ["ec2:RunInstances"],
+      "Condition": {
+        "StringNotEquals": {
+          "ec2:owner": "094877685232"
+        }
+      },
+      "Effect": "Allow",
+      "Resource": ["arn:aws:ec2:us-east-1::image/ami-*"]
+    },
+    {
+      "Action": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeInstanceStatus",
+        "ec2:StartInstances",
+        "ec2:StopInstances",
+        "ec2:RebootInstances",
+        "ec2:CreateNetworkInterface",
+        "ec2:DeleteNetworkInterface",
+        "ec2:AttachNetworkInterface",
+        "ec2:DetachNetworkInterface",
+        "ec2:ModifyInstanceAttribute",
+        "ec2:TerminateInstances",
+        "ec2:CreateTags",
+        "ec2:CreateSnapshot",
+        "ec2:CreateSnapshots",
+        "ec2:DeleteSnapshot",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeSnapshots"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "NotAction": ["iam:*", "organizations:*"],
+      "Resource": "*"
+    },
+    {
+      "Action": "iam:CreateServiceLinkedRole",
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::*:role/aws-service-role/*"
+    },
+    {
+      "Action": "organizations:DescribeOrganization",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": "rds:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": "rds:Describe*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "ec2:AcceptReservedInstancesExchangeQuote",
+        "ec2:AcceptVpcPeeringConnection",
+        "ec2:AllocateAddress",
+        "ec2:AllocateHosts",
+        "ec2:AssociateAddress",
+        "ec2:AssociateDhcpOptions",
+        "ec2:AssociateFpgaImage",
+        "ec2:AttachClassicLinkVpc",
+        "ec2:AttachInternetGateway",
+        "ec2:AttachVpnGateway",
+        "ec2:BundleInstance",
+        "ec2:CancelBundleTask",
+        "ec2:CancelConversionTask",
+        "ec2:CancelExportTask",
+        "ec2:CancelImportTask",
+        "ec2:CancelSpotFleetRequests",
+        "ec2:CancelSpotInstanceRequests",
+        "ec2:CreateCustomerGateway",
+        "ec2:CreateDhcpOptions",
+        "ec2:CreateFlowLogs",
+        "ec2:CreateInternetGateway",
+        "ec2:CreateKeyPair",
+        "ec2:CreateNatGateway",
+        "ec2:CreateNetworkAcl",
+        "ec2:CreateNetworkAclEntry",
+        "ec2:CreatePlacementGroup",
+        "ec2:CreateReservedInstancesListing",
+        "ec2:CreateRoute",
+        "ec2:CreateRouteTable",
+        "ec2:CreateSpotDatafeedSubscription",
+        "ec2:CreateSubnet",
+        "ec2:CreateVpc",
+        "ec2:CreateVpcEndpoint",
+        "ec2:CreateVpcPeeringConnection",
+        "ec2:CreateVpnConnection",
+        "ec2:CreateVpnConnectionRoute",
+        "ec2:CreateVpnGateway",
+        "ec2:DeleteCustomerGateway",
+        "ec2:DeleteDhcpOptions",
+        "ec2:DeleteFlowLogs",
+        "ec2:DeleteInternetGateway",
+        "ec2:DeleteKeyPair",
+        "ec2:DeleteNatGateway",
+        "ec2:DeleteNetworkAcl",
+        "ec2:DeleteNetworkAclEntry",
+        "ec2:DeletePlacementGroup",
+        "ec2:DeleteRoute",
+        "ec2:DeleteRouteTable",
+        "ec2:DeleteSpotDatafeedSubscription",
+        "ec2:DeleteSubnet",
+        "ec2:DeleteVpc",
+        "ec2:DeleteVpcEndpoints",
+        "ec2:DeleteVpcPeeringConnection",
+        "ec2:DeleteVpnConnection",
+        "ec2:DeleteVpnConnectionRoute",
+        "ec2:DeleteVpnGateway",
+        "ec2:DetachClassicLinkVpc",
+        "ec2:DetachInternetGateway",
+        "ec2:DetachVpnGateway",
+        "ec2:DisableVgwRoutePropagation",
+        "ec2:DisableVpcClassicLink",
+        "ec2:DisableVpcClassicLinkDnsSupport",
+        "ec2:DescribeVpcClassicLinkDnsSupport",
+        "ec2:DisassociateFpgaImage",
+        "ec2:DisassociateIamInstanceProfile",
+        "ec2:DisassociateRouteTable",
+        "ec2:EnableVgwRoutePropagation",
+        "ec2:EnableVolumeIO",
+        "ec2:EnableVpcClassicLink",
+        "ec2:EnableVpcClassicLinkDnsSupport",
+        "ec2:GetHostReservationPurchasePreview",
+        "ec2:GetReservedInstancesExchangeQuote",
+        "ec2:ImportImage",
+        "ec2:ImportInstance",
+        "ec2:ImportKeyPair",
+        "ec2:ImportSnapshot",
+        "ec2:ImportVolume",
+        "ec2:ModifyHosts",
+        "ec2:ModifyIdentityIdFormat",
+        "ec2:ModifyIdFormat",
+        "ec2:ModifyImageAttribute",
+        "ec2:ModifyReservedInstances",
+        "ec2:ModifySnapshotAttribute",
+        "ec2:ModifySpotFleetRequest",
+        "ec2:ModifySubnetAttribute",
+        "ec2:ModifyVpcAttribute",
+        "ec2:ModifyVpcEndpoint",
+        "ec2:ModifyVpcPeeringConnectionOptions",
+        "ec2:MoveAddressToVpc",
+        "ec2:PurchaseHostReservation",
+        "ec2:PurchaseReservedInstancesOffering",
+        "ec2:PurchaseScheduledInstances",
+        "ec2:RegisterImage",
+        "ec2:RejectVpcPeeringConnection",
+        "ec2:ReleaseAddress",
+        "ec2:ReleaseHosts",
+        "ec2:ReplaceNetworkAclAssociation",
+        "ec2:ReplaceNetworkAclEntry",
+        "ec2:ReplaceRoute",
+        "ec2:ReplaceRouteTableAssociation",
+        "ec2:RequestSpotFleet",
+        "ec2:RequestSpotInstances",
+        "ec2:ResetImageAttribute",
+        "ec2:ResetNetworkInterfaceAttribute",
+        "ec2:ResetSnapshotAttribute",
+        "ec2:RestoreAddressToClassic",
+        "ec2:UnmonitorInstances"
+      ],
+      "Effect": "Deny",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "elasticfilesystem:CreateFileSystem",
+        "elasticfilesystem:CreateMountTarget",
+        "elasticfilesystem:CreateTags",
+        "elasticfilesystem:DeleteFileSystem",
+        "elasticfilesystem:DeleteMountTarget",
+        "elasticfilesystem:DeleteTags",
+        "elasticfilesystem:DescribeFileSystems",
+        "elasticfilesystem:DescribeMountTargets",
+        "elasticfilesystem:DescribeTags",
+        "elasticfilesystem:ModifyMountTargetSecurityGroups",
+        "elasticfilesystem:ModifyTags",
+        "elasticfilesystem:PutLifecycleConfiguration",
+        "elasticfilesystem:PutFileSystemPolicy",
+        "elasticfilesystem:DescribeLifecycleConfiguration",
+        "elasticfilesystem:DescribeFileSystemPolicy",
+        "elasticfilesystem:UpdateFileSystem",
+        "elasticfilesystem:DescribeAccountPreferences",
+        "elasticfilesystem:PutAccountPreferences",
+        "elasticfilesystem:TagResource"
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "efspermissions"
+    },
+    {
+      "Action": [
+        "acm:RequestCertificate",
+        "acm:DescribeCertificate",
+        "acm:DeleteCertificate",
+        "acm:ListCertificates",
+        "acm:ListTagsForCertificate",
+        "acm:ImportCertificate",
+        "acm:GetCertificate",
+        "acm:UpdateCertificateOptions",
+        "acm:RenewCertificate",
+        "acm:RemoveTagsFromCertificate",
+        "acm:ExportCertificate",
+        "acm:AddTagsToCertificate"
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "acmpermissions"
+    },
+    {
+      "Action": [
+        "iam:ListInstanceProfiles",
+        "iam:PassRole",
+        "iam:ListRoles",
+        "iam:GetAccountSummary",
+        "iam:ListAccountAliases",
+        "iam:ListGroups",
+        "iam:ListUsers",
+        "iam:ListPolicies",
+        "iam:GetGroup",
+        "iam:ListGroupPolicies"
+      ],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:iam::094877685232:*"],
+      "Sid": "AllowAllUsersToListInstanceProfiles"
+    },
+    {
+      "Action": [
+        "ec2:UnmonitorInstances",
+        "ec2:TerminateInstances",
+        "ec2:DeleteTags",
+        "ec2:StartInstances",
+        "ec2:CreateTags",
+        "ec2:StopInstances"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "ec2:ResourceTag/CSR_Restricted": "True"
+        }
+      },
+      "Effect": "Deny",
+      "Resource": "*",
+      "Sid": "VisualEditor0"
+    },
+    {
+      "Action": [
+        "ec2:RevokeSecurityGroupIngress",
+        "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+        "ec2:DeleteTags",
+        "ec2:RevokeSecurityGroupEgress",
+        "ec2:DeleteSecurityGroup",
+        "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
+        "ec2:AuthorizeSecurityGroupEgress",
+        "ec2:AuthorizeSecurityGroupIngress"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "ec2:ResourceTag/MGTS_Restricted": "True"
+        }
+      },
+      "Effect": "Deny",
+      "Resource": "*"
+    }
+  ],
+  "Version": "2012-10-17"
+}

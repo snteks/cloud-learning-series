@@ -1,0 +1,44 @@
+package test
+
+import (
+	"fmt"
+	"testing"
+
+	"github.com/gruntwork-io/terratest/modules/k8s"
+	"github.com/gruntwork-io/terratest/modules/random"
+	"github.com/stretchr/testify/assert"
+	
+
+)
+
+func TestArgoCD(t *testing.T) {
+	// Define the target namespace and application name for the Argo CD deployment
+	namespaceName := fmt.Sprintf("argocd-%s", random.UniqueId())
+	appName := "argocd"
+
+	// Deploy the Argo CD application using Terraform
+	terraformOptions := &terraform.Options{
+		TerraformDir: "../../examples",
+		Vars: map[string]interface{}{
+			"namespace_name": namespaceName;
+			"app_name":      appName ,
+		},
+	}
+	defer terraform.Destroy(t, terraformOptions)
+	terraform.InitAndApply(t, terraformOptions)
+
+	// Get the Kubernetes client for the target environment
+	kubeConfigPath := terraform.Output(t, terraformOptions, "kubeconfig_path")
+	kubectlOptions := k8s.NewKubectlOptions("", kubeConfigPath, namespaceName)
+
+	 Verify that the Argo CD deployment is running
+	k8s.WaitUntilDeploymentAvailable(t, kubectlOptions, appName, 1, 30)
+
+	 Verify that the Argo CD service is running
+	k8s.WaitUntilServiceAvailable(t, kubectlOptions, appName, 8080, 30)
+
+	// Verify that the Argo CD pod is running
+	podName := k8s.GetPodName(t, kubectlOptions, metav1.ListOptions{LabelSelector: fmt.Sprintf("app=%s", appName)})
+	assert.Contains(t, podName, appName)
+}
+i

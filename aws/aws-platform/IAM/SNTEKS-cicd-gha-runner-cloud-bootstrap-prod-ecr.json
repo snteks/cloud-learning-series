@@ -1,0 +1,39 @@
+{
+  "Statement": [
+    {
+      "Action": [
+        "ecr:PutLifecyclePolicy",
+        "ecr:CompleteLayerUpload",
+        "ecr:DescribeRepositories",
+        "ecr:ListTagsForResource",
+        "ecr:UploadLayerPart",
+        "ecr:ListImages",
+        "ecr:DeleteRepositoryPolicy",
+        "ecr:InitiateLayerUpload",
+        "ecr:DeleteLifecyclePolicy",
+        "ecr:DeleteRepository",
+        "ecr:GetLifecyclePolicy",
+        "ecr:BatchGetImage",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:DescribeImages",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:PutImage"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:ecr:*:094877685232:repository/*",
+      "Sid": "VisualEditor0"
+    },
+    {
+      "Action": [
+        "ecr:CreateRepository",
+        "ecr:DescribeRegistry",
+        "ecr:GetAuthorizationToken"
+      ],
+      "Effect": "Allow",
+      "Resource": "*",
+      "Sid": "VisualEditor1"
+    }
+  ],
+  "Version": "2012-10-17"
+}
+

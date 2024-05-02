@@ -1,0 +1,7 @@
+workflow:
+  serviceAccount:
+    create: true
+    name: "argo-workflow"
+  rbac:
+    create: true
+nameOverride: cicd-platform-argo-workflows

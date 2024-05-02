@@ -1,0 +1,44 @@
+{
+  "Statement": [
+    {
+      "Action": "iam:PassRole",
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:role/SNTEKS*",
+      "Sid": "VisualEditor0"
+    },
+    {
+      "Action": [
+        "iam:UpdateAssumeRolePolicy",
+        "iam:DeleteAccountPasswordPolicy",
+        "iam:PutRolePermissionsBoundary",
+        "iam:PutUserPermissionsBoundary",
+        "iam:AttachUserPolicy",
+        "iam:DeleteUserPolicy",
+        "iam:DeletePolicy",
+        "iam:AttachRolePolicy",
+        "iam:DeleteUserPermissionsBoundary",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePermissionsBoundary",
+        "iam:CreatePolicy",
+        "iam:DetachRolePolicy",
+        "iam:AttachGroupPolicy",
+        "iam:DeleteRolePolicy",
+        "iam:PutUserPolicy",
+        "iam:DetachGroupPolicy",
+        "iam:CreatePolicyVersion",
+        "iam:DeleteGroupPolicy",
+        "iam:DetachUserPolicy",
+        "iam:DeletePolicyVersion",
+        "iam:PutGroupPolicy",
+        "iam:SetDefaultPolicyVersion"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:iam::094877685232:role/SNTEKS*",
+        "arn:aws:iam::094877685232:role/SNTEKS*"
+      ],
+      "Sid": "RolePermissionsBoundary"
+    }
+  ],
+  "Version": "2012-10-17"
+}

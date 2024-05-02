@@ -1,0 +1,99 @@
+package test
+
+import (
+	"context"
+	"fmt"
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"strings"
+	"testing"
+	"time"
+
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/eks"
+	"github.com/gruntwork-io/terratest/modules/helm"
+	"github.com/gruntwork-io/terratest/modules/k8s"
+	"github.com/gruntwork-io/terratest/modules/random"
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+)
+
+func TestArgoCDHelmRelease(t *testing.T) {
+	// Define the variables to use in the test.
+	uniqueID := random.UniqueId()
+	namespace := fmt.Sprintf("argocd%s", uniqueID)
+	helmReleaseName := fmt.Sprintf("argocd%s", uniqueID)
+	chartNamespace := "argocd"
+	chartName := "argocd"
+	chartVersion := "2.2.1"
+	repoURL := "https://argoproj.github.io/argo-helm"
+
+	// Create a temporary directory to hold the Terraform code.
+	tempDirPath, err := ioutil.TempDir("", "terratest-argocd-")
+	require.NoError(t, err)
+	defer os.RemoveAll(tempDirPath)
+
+	// Copy the Terraform code to the temporary directory.
+	err = filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if info.IsDir() {
+			return nil
+		}
+		relativePath, err := filepath.Rel(".", path)
+		if err != nil {
+			return err
+		}
+		if strings.HasPrefix(relativePath, ".terraform") {
+			return nil
+		}
+		content, err := ioutil.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		destPath := filepath.Join(tempDirPath, relativePath)
+		err = os.MkdirAll(filepath.Dir(destPath), 0755)
+		if err != nil {
+			return err
+		}
+		err = ioutil.WriteFile(destPath, content, 0644)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	require.NoError(t, err)
+
+	// Run `terraform init` to initialize the Terraform working directory.
+	terraformOptions := &terraform.Options{
+		TerraformDir: tempDirPath,
+		Vars: map[string]interface{}{
+			"create_namespace": namespace,
+			"helm_release_name": helmReleaseName,
+			"chart_namespace": chartNamespace,
+			"chart_name": chartName,
+			"chartversion": chartVersion,
+			"repourl": repoURL,
+		},
+	}
+	defer terraform.Destroy(t, terraformOptions)
+	terraform.InitAndApply(t, terraformOptions)
+
+	// Get the Kubernetes config from Terraform output.
+	kubeConfig := terraform.Output(t, terraformOptions, "kubeconfig")
+	require.NotEmpty(t, kubeConfig)
+
+	// Get the ARN of the EKS cluster.
+	eksClusterName := terraform.Output(t, terraformOptions, "cluster_name")
+	sess, err := session.NewSession()
+	require.NoError(t, err)
+	eksClient := eks.New(sess)
+	describeClusterInput := &eks.DescribeClusterInput{
+		Name: &eksClusterName,
+	}
+	describeClusterOutput, err := eksClient.DescribeCluster(describeClusterInput)
+	require.NoError(t, err)
+

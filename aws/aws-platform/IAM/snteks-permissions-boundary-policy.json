@@ -1,0 +1,232 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Resource": "*",
+      "Effect": "Allow",
+      "NotAction": ["iam:*", "organizations:*"]
+    },
+    {
+      "Action": ["iam:List*", "iam:Get*"],
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
+      "Condition": {
+        "StringEquals": {
+          "iam:PermissionsBoundary": "arn:aws:iam::094877685232:policy/SNTEKS-PermissionBoundary-V3"
+        }
+      },
+      "Action": [
+        "iam:DetachRolePolicy",
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "iam:UpdateRoleDescription"
+      ],
+      "Resource": "arn:aws:iam::094877685232:role/SNTEKS*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": ["iam:TagRole", "iam:UntagRole", "iam:DeleteServiceLinkedRole"],
+      "Resource": [
+        "arn:aws:iam::094877685232:role/SNTEKS*",
+        "arn:aws:iam::094877685232:role/AWSServiceRoleForFSxS3Access*"
+      ],
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "iam:CreateInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:GetInstanceProfile",
+        "iam:RemoveRoleFromInstanceProfile",
+        "iam:DeleteInstanceProfile",
+        "iam:TagInstanceProfile"
+      ],
+      "Resource": "arn:aws:iam::094877685232:instance-profile/SNTEKS*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "iam:CreateServiceLinkedRole",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListRoleTags",
+        "iam:GetRole",
+        "iam:DeleteRole",
+        "iam:ListRolePolicies",
+        "iam:GetRolePolicy",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:ListInstanceProfilesForRole",
+        "iam:UpdateAssumeRolePolicy"
+      ],
+      "Resource": [
+        "arn:aws:iam::094877685232:role/SNTEKS*",
+        "arn:aws:iam::094877685232:role/aws-service-role/*"
+      ],
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "iam:GetServiceLastAccessedDetails",
+        "iam:GenerateServiceLastAccessedDetails",
+        "iam:ListPoliciesGrantingServiceAccess",
+        "iam:GetAccountSummary",
+        "iam:ListAccountAliases"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:ListEntitiesForPolicy",
+        "iam:ListPolicyVersions",
+        "iam:GetPolicyVersion",
+        "iam:DeletePolicy",
+        "iam:GetPolicy",
+        "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::094877685232:policy/SNTEKS*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "iam:CreateOpenIDConnectProvider",
+        "iam:TagOpenIDConnectProvider",
+        "iam:DeleteOpenIDConnectProvider"
+      ],
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
+      "Condition": {
+        "StringEquals": {
+          "ec2:Public": ["false"]
+        },
+        "StringNotEquals": {
+          "ec2:Owner": ["150370869210", "amazon"]
+        }
+      },
+      "Action": "ec2:RunInstances",
+      "Effect": "Deny",
+      "NotResource": [
+        "arn:aws:ec2:*:*:instance/*",
+        "arn:aws:ec2:*:*:network-interface/*",
+        "arn:aws:ec2:*:*:security-group/*",
+        "arn:aws:ec2:*:*:subnet/*",
+        "arn:aws:ec2:*:*:volume/*",
+        "arn:aws:ec2:*:*:key-pair/*",
+        "arn:aws:ec2:*:*:launch-template/*",
+        "arn:aws:ec2:*:*:placement-group/*",
+        "arn:aws:ec2:*:*:snapshot/*"
+      ]
+    },
+    {
+      "Action": "iam:PassRole",
+      "Resource": [
+        "arn:aws:iam::094877685232:role/SNTEKS*",
+        "arn:aws:iam::094877685232:role/aws-service-role/*"
+      ],
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "ec2:AcceptReservedInstancesExchangeQuote",
+        "ec2:AcceptVpcPeeringConnection",
+        "ec2:AllocateAddress",
+        "ec2:AllocateHosts",
+        "ec2:AssociateAddress",
+        "ec2:AssociateDhcpOptions",
+        "ec2:AttachInternetGateway",
+        "ec2:AttachVpnGateway",
+        "ec2:BundleInstance",
+        "ec2:CreateCustomerGateway",
+        "ec2:CreateDhcpOptions",
+        "ec2:CreateFlowLogs",
+        "ec2:CreateInternetGateway",
+        "ec2:CreateKeyPair",
+        "ec2:CreateNatGateway",
+        "ec2:CreateNetworkAcl",
+        "ec2:CreateNetworkAclEntry",
+        "ec2:CreatePlacementGroup",
+        "ec2:CreateReservedInstancesListing",
+        "ec2:CreateRoute",
+        "ec2:CreateRouteTable",
+        "ec2:CreateSpotDatafeedSubscription",
+        "ec2:CreateSubnet",
+        "ec2:CreateVpc",
+        "ec2:CreateVpcPeeringConnection",
+        "ec2:CreateVpnConnection",
+        "ec2:CreateVpnConnectionRoute",
+        "ec2:CreateVpnGateway",
+        "ec2:DeleteCustomerGateway",
+        "ec2:DeleteDhcpOptions",
+        "ec2:DeleteFlowLogs",
+        "ec2:DeleteInternetGateway",
+        "ec2:DeleteKeyPair",
+        "ec2:DeleteNatGateway",
+        "ec2:DeleteNetworkAcl",
+        "ec2:DeleteNetworkAclEntry",
+        "ec2:DeletePlacementGroup",
+        "ec2:DeleteRoute",
+        "ec2:DeleteRouteTable",
+        "ec2:DeleteSpotDatafeedSubscription",
+        "ec2:DeleteSubnet",
+        "ec2:DeleteVpc",
+        "ec2:DeleteVpcEndpoints",
+        "ec2:DeleteVpcPeeringConnection",
+        "ec2:DeleteVpnConnection",
+        "ec2:DeleteVpnConnectionRoute",
+        "ec2:DeleteVpnGateway",
+        "ec2:DeregisterImage",
+        "ec2:DetachClassicLinkVpc",
+        "ec2:DetachInternetGateway",
+        "ec2:DetachVpnGateway",
+        "ec2:DisableVgwRoutePropagation",
+        "ec2:DisassociateRouteTable",
+        "ec2:EnableVgwRoutePropagation",
+        "ec2:EnableVolumeIO",
+        "ec2:GetHostReservationPurchasePreview",
+        "ec2:GetReservedInstancesExchangeQuote",
+        "ec2:ImportImage",
+        "ec2:ImportInstance",
+        "ec2:ImportKeyPair",
+        "ec2:ImportSnapshot",
+        "ec2:ImportVolume",
+        "ec2:ModifyHosts",
+        "ec2:ModifyIdentityIdFormat",
+        "ec2:ModifyIdFormat",
+        "ec2:ModifyImageAttribute",
+        "ec2:ModifyReservedInstances",
+        "ec2:ModifySubnetAttribute",
+        "ec2:ModifyVpcAttribute",
+        "ec2:ModifyVpcEndpoint",
+        "ec2:ModifyVpcPeeringConnectionOptions",
+        "ec2:MoveAddressToVpc",
+        "ec2:PurchaseHostReservation",
+        "ec2:PurchaseReservedInstancesOffering",
+        "ec2:PurchaseScheduledInstances",
+        "ec2:RegisterImage",
+        "ec2:RejectVpcPeeringConnection",
+        "ec2:ReleaseAddress",
+        "ec2:ReleaseHosts",
+        "ec2:ReplaceNetworkAclAssociation",
+        "ec2:ReplaceNetworkAclEntry",
+        "ec2:ReplaceRoute",
+        "ec2:ReplaceRouteTableAssociation",
+        "ec2:RequestSpotFleet",
+        "ec2:RequestSpotInstances",
+        "ec2:ResetImageAttribute",
+        "ec2:ResetNetworkInterfaceAttribute",
+        "ec2:ResetSnapshotAttribute",
+        "ec2:RestoreAddressToClassic",
+        "ec2:UnmonitorInstances"
+      ],
+      "Resource": "*",
+      "Effect": "Deny"
+    }
+  ]
+}

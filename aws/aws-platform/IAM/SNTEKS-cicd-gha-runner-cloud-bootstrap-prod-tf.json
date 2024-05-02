@@ -1,0 +1,263 @@
+{
+  "Statement": [
+    {
+      "Action": [
+        "iam:GenerateCredentialReport",
+        "iam:GenerateServiceLastAccessedDetails",
+        "iam:Get*",
+        "iam:List*",
+        "iam:SimulateCustomPolicy",
+        "iam:SimulatePrincipalPolicy"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "iam:DetachRolePolicy",
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "iam:UpdateRoleDescription",
+        "iam:UpdateAssumeRolePolicy"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:role/SNTEKS*"
+    },
+    {
+      "Action": ["iam:TagRole", "iam:UntagRole"],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:role/SNTEKS*"
+    },
+    {
+      "Action": [
+        "iam:CreateInstanceProfile",
+        "iam:AddRoleToInstanceProfile",
+        "iam:GetInstanceProfile",
+        "iam:RemoveRoleFromInstanceProfile",
+        "iam:DeleteInstanceProfile"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:instance-profile/SNTEKS*"
+    },
+    {
+      "Action": [
+        "iam:CreateServiceLinkedRole",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListRoleTags",
+        "iam:GetRole",
+        "iam:DeleteRole",
+        "iam:ListRolePolicies",
+        "iam:GetRolePolicy",
+        "iam:PutRolePolicy",
+        "iam:DeleteRolePolicy",
+        "iam:ListInstanceProfilesForRole",
+        "iam:UpdateAssumeRolePolicy"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:role/SNTEKS*"
+    },
+    {
+      "Action": [
+        "iam:GetServiceLastAccessedDetails",
+        "iam:GenerateServiceLastAccessedDetails",
+        "iam:ListPoliciesGrantingServiceAccess",
+        "iam:GetAccountSummary",
+        "iam:ListAccountAliases"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "iam:CreateServiceLinkedRole",
+        "iam:PutRolePolicy",
+        "iam:DeleteServiceLinkedRole"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:role/aws-service-role/s3.data-source.lustre.fsx.amazonaws.com/AWSServiceRoleForFSxS3Access*"
+    },
+    {
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:ListEntitiesForPolicy",
+        "iam:ListPolicyVersions",
+        "iam:GetPolicyVersion",
+        "iam:DeletePolicy",
+        "iam:GetPolicy",
+        "iam:TagPolicy"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:policy/SNTEKS*"
+    },
+    {
+      "Action": [
+        "kms:TagResource",
+        "kms:GetKeyRotationStatus",
+        "kms:PutKeyPolicy",
+        "kms:GetKeyPolicy",
+        "kms:DescribeKey",
+        "kms:CreateKey",
+        "kms:ListResourceTags",
+        "kms:GenerateDataKey"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "s3:Put*",
+        "s3:Get*",
+        "s3:DeleteObjectVersion",
+        "s3:DeleteObject",
+        "s3:AbortMultipartUpload",
+        "s3:List*",
+        "s3:CreateBucket",
+        "s3:DeleteBucket",
+        "s3:DeleteJobTagging",
+        "s3:DeleteObjectTagging",
+        "s3:DeleteObjectVersionTagging"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::094877685232*",
+        "arn:aws:s3:::dev-cdr-databricks-workspace-s3"
+      ]
+    },
+    {
+      "Action": [
+        "ec2:RevokeSecurityGroupIngress",
+        "ec2:AuthorizeSecurityGroupEgress",
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+        "ec2:DeleteTags",
+        "ec2:CreateSecurityGroup",
+        "ec2:CreateTags",
+        "ec2:RevokeSecurityGroupEgress",
+        "ec2:DeleteSecurityGroup",
+        "ec2:ModifySecurityGroupRules",
+        "ec2:UpdateSecurityGroupRuleDescriptionsIngress"
+      ],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:ec2:*:094877685232:security-group/SNTEKS-DEV-*"]
+    },
+    {
+      "Action": "kms:*",
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": [
+        "dynamodb:CreateTable",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:dynamodb:us-east-1:094877685232:table/*"
+    },
+    {
+      "Action": [
+        "ssm:DescribeParameters",
+        "ssm:GetParameter",
+        "ssm:GetParameterHistory",
+        "ssm:GetParameters",
+        "ssm:GetParametersByPath"
+      ],
+      "Effect": "Allow",
+      "Resource": ["*"]
+    },
+    {
+      "Action": [
+        "ssm:LabelParameterVersion",
+        "ssm:GetParameterHistory",
+        "ssm:GetParameters",
+        "ssm:GetParameter",
+        "ssm:DeleteParameters",
+        "ssm:PutParameter",
+        "ssm:DeleteParameter",
+        "ssm:UnlabelParameterVersion",
+        "ssm:RemoveTagsFromResource",
+        "ssm:DescribeParameters",
+        "ssm:AddTagsToResource",
+        "ssm:DescribeDocumentParameters",
+        "ssm:GetParametersByPath",
+        "ssm:List*"
+      ],
+      "Effect": "Allow",
+      "Resource": ["*"]
+    },
+    {
+      "Action": [
+        "secretsmanager:UntagResource",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:DeleteResourcePolicy",
+        "secretsmanager:PutSecretValue",
+        "secretsmanager:CreateSecret",
+        "secretsmanager:DeleteSecret",
+        "secretsmanager:ListSecretVersionIds",
+        "secretsmanager:UpdateSecret",
+        "secretsmanager:GetRandomPassword",
+        "secretsmanager:GetResourcePolicy",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:PutResourcePolicy",
+        "secretsmanager:RestoreSecret",
+        "secretsmanager:RotateSecret",
+        "secretsmanager:UpdateSecretVersionStage",
+        "secretsmanager:ValidateResourcePolicy",
+        "secretsmanager:ListSecrets",
+        "secretsmanager:TagResource"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:secretsmanager:us-east-1:094877685232:secret:argocd*"
+      ]
+    },
+    {
+      "Action": "sts:AssumeRole",
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::094877685232:role/SNTEKS-Terraform-IAM-SelfService"
+    },
+    {
+      "Action": ["iam:PutRolePolicy", "iam:DeleteRolePolicy"],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:iam::094877685232:role/ADFS-SNTEKS*",
+        "arn:aws:iam::094877685232:role/snteks*"
+      ]
+    },
+    {
+      "Action": ["events:*", "schemas:*", "scheduler:*", "pipes:*"],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": ["route53:*"],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Action": ["iam:PassRole"],
+      "Condition": {
+        "StringLike": {
+          "iam:PassedToService": "scheduler.amazonaws.com"
+        }
+      },
+      "Effect": "Allow",
+      "Resource": ["arn:aws:iam::*:role/*"]
+    },
+    {
+      "Action": ["iam:PassRole"],
+      "Condition": {
+        "StringLike": {
+          "iam:PassedToService": "events.amazonaws.com"
+        }
+      },
+      "Effect": "Allow",
+      "Resource": ["arn:aws:iam::*:role/*"]
+    }
+  ],
+  "Version": "2012-10-17"
+}
